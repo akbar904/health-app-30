@@ -1,4 +1,6 @@
 import 'package:my_app/app/app.locator.dart';
+import 'package:my_app/core/enums/bottom_sheet_type.dart';
+import 'package:my_app/core/enums/dialog_priority.dart';
 import 'package:my_app/models/todo_model.dart';
 import 'package:my_app/services/todo_service.dart';
 import 'package:stacked/stacked.dart';
@@ -28,7 +30,6 @@ class HomeViewModel extends ReactiveViewModel {
     final response = await _dialogService.showDialog(
       title: 'Confirm Delete',
       description: 'Are you sure you want to delete this todo?',
-      dialogPriority: DialogPriority.high,
     );
 
     if (response?.confirmed ?? false) {
@@ -38,5 +39,5 @@ class HomeViewModel extends ReactiveViewModel {
   }
 
   @override
-  List<ListenableServiceMixin> get listenableServices => [_todoService];
+  List<ListenableServiceMixin> get listenableServices => [_todoService as ListenableServiceMixin];
 }
